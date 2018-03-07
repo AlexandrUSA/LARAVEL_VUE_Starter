@@ -1,7 +1,6 @@
 <template>
-  <div id="app">
+  <div id="app" data-app="true">
     <loading ref="loading"/>
-
     <transition name="page" mode="out-in">
       <component v-if="layout" :is="layout"></component>
     </transition>
@@ -11,7 +10,7 @@
 <script>
 import Loading from './Loading'
 
-// Load layout components dynamically.
+// Динамическая загрузка компонентов разметки.
 const requireContext = require.context('~/layouts', false, /.*\.vue$/)
 
 const layouts = requireContext.keys()
@@ -49,17 +48,60 @@ export default {
 
   methods: {
     /**
-     * Set the application layout.
+     * Установка разметки приложения.
      *
      * @param {String} layout
      */
     setLayout (layout) {
-      if (!layout || !layouts[layout]) {
-        layout = this.defaultLayout
-      }
-
+      if (!layout || !layouts[layout]) layout = this.defaultLayout;
       this.layout = layouts[layout]
     }
   }
 }
 </script>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+  
+  html {
+    overflow-y: auto;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #app {
+    width: 100%;
+    height: 100%;
+  }
+
+  .toolbar__content {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .btn__content {
+    height: auto !important;
+  }
+  .menuable__content__active {
+    background-color: #fff;
+  }
+
+input[type=email],
+input[type=text],
+input[type=number] {
+  border-bottom: 1px solid #BBDEFB;
+  -moz-appearance: textfield;
+}
+</style>

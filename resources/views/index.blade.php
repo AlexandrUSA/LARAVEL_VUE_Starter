@@ -22,10 +22,12 @@ $polyfills = [
 <html lang="{{ app()->getLocale() }}">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{ config('app.name') }}</title>
-
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body>
@@ -35,8 +37,8 @@ $polyfills = [
   <script>window.config = @json($config);</script>
 
   {{-- Подключаем нужные поллифилы через polyfill.io --}}
-  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features={{ implode(',', $polyfills) }}"></script>
-
+<!--   <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features={{ implode(',', $polyfills) }}"></script>
+ -->
   {{-- Загрузка скриптов --}}
   @if (app()->isLocal())
     <script src="{{ mix('js/app.js') }}"></script>
@@ -45,5 +47,6 @@ $polyfills = [
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>
   @endif
+
 </body>
 </html>

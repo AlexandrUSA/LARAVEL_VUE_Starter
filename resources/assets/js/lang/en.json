@@ -6,6 +6,8 @@
   "token_expired_alert_title": "Session Expired!",
   "token_expired_alert_text": "Please log in again to continue.",
   "login": "Log In",
+  "has_account": "Already got an account?",
+  "has_not_account": "Don't have an account?",
   "register": "Register",
   "page_not_found": "Page Not Found",
   "go_home": "Go Home",

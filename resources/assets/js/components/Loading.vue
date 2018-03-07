@@ -8,7 +8,7 @@
 </template>
 
 <script>
-// https://github.com/nuxt/nuxt.js/blob/master/lib/app/components/nuxt-loading.vue
+//  Ориг. https://github.com/nuxt/nuxt.js/blob/master/lib/app/components/nuxt-loading.vue
 export default {
   data: () => ({
     percent: 0,

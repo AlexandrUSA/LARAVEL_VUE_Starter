@@ -1,6 +1,7 @@
 {
   "ok": "Ok",
   "cancel": "Cancel",
+  "attention": "Attention!",
   "error_alert_title": "Oops...",
   "error_alert_text": "Something went wrong! Please try again.",
   "token_expired_alert_title": "Session Expired!",
@@ -35,5 +36,25 @@
   "password_updated": "Your password has been updated!",
   "new_password": "New Password",
   "login_with": "Login with",
-  "register_with": "Register with"
+  "register_with": "Register with",
+
+  "employees": "Employees",
+  "employee": "Employee",
+  "last_name": "Last name",
+  "patronymic": "Patronymic",
+  "details": "Details",
+  "strings": "Strings",
+  "search_input": "Find item",
+  "position": "Position",
+  "phone_number": "Phone_number",
+  "salary": "Salary",
+  "address": "Address",
+  "birthday": "Birthday",
+  "add_image": "Add image",
+  "change_image": "Change image",
+  "change_data": "Change data",
+  "new_employee": "New employee",
+  "edit_employee": "Edit employee",
+  "main": "Main",
+  "no_match_found" : "No match found"
 }

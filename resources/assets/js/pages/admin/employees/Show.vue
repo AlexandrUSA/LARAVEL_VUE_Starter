@@ -1,6 +1,6 @@
 <template>
   			<div class="employee">
-  				<h2>Сотрудник</h2>
+  				<h2>{{ $t('employee') }}</h2>
   				<div class="employee__avatar">
   					<div class="employee__avatar-container">
   						<div class="avatar__overlay">
@@ -12,42 +12,42 @@
   				</div>
 	  			<div class="employee__descr">
 	  				<p class="employee__text">
-	  					<b>Имя:</b> <i>{{item.first_name}}</i>
+	  					<b>{{ $t('name') }}:</b> <i>{{item.first_name}}</i>
 	  				</p>
 	  				<v-divider></v-divider>
 	  				<p class="employee__text">
-	  					<b>Фамилия:</b> <i>{{item.last_name}}</i>
+	  					<b>{{ $t('last_name') }}:</b> <i>{{item.last_name}}</i>
 	  				</p>
 	  				<v-divider></v-divider>
 	  				<p class="employee__text">
-	  					<b>Отчество:</b> <i>{{item.patronymic ? item.patronymic : 'Не указано'}}</i>
+	  					<b>{{ $t('patronymic') }}:</b> <i>{{item.patronymic ? item.patronymic : 'Не указано'}}</i>
 	  				</p>
 	  				<v-divider></v-divider>
 	  				<p class="employee__text">
-	  					<b>Должность:</b> <i>{{item.position}}</i>
+	  					<b>{{ $t('position') }}:</b> <i>{{item.position}}</i>
 	  				</p>
 	  				<v-divider></v-divider>
 	  				<p class="employee__text">
-	  					<b>Телефон:</b> <i>{{item.phone_number}}</i>
+	  					<b>{{ $t('phone_number') }}:</b> <i>{{item.phone_number}}</i>
 	  				</p>
 	  				<v-divider></v-divider>
 	  				<p class="employee__text">
-	  					<b>Заработная плата:</b> <i>{{item.salary}} руб.</i>
+	  					<b>{{ $t('salary') }}:</b> <i>{{item.salary}} руб.</i>
 	  				</p>
 	  				<v-divider></v-divider>
 	  				<p class="employee__text">
-	  					<b>Адресс:</b> <i>{{item.address}}</i>
+	  					<b>{{ $t('address') }}:</b> <i>{{item.address}}</i>
 	  				</p>
 	  				<v-divider></v-divider>
 	  				<p class="employee__text">
-	  					<b>День рождения:</b> <i>{{item.birthday}}</i>
+	  					<b>{{ $t('birthday') }}:</b> <i>{{item.birthday}}</i>
 	  				</p>
 	  				<v-btn
 				      color="info"
 				      block
 				      :to="{name: 'employeeEdit', params: {id: item.id, employee: item}}"
 				    >
-				      Изменить данные
+				      {{ $t('change_data') }}
 				    </v-btn>
 	  			</div>
   			</div>		
@@ -148,7 +148,9 @@
 		width: 316px;
 		height: 316px;
 		margin: 0 auto;
-
+		box-shadow: 0 0 13px rgba(0, 0, 0, .5);
+		border-radius: 3px;
+		overflow: hidden;
 	}
 
 	.avatar__overlay {

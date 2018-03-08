@@ -7,27 +7,27 @@
           <v-card-text>
             <v-form v-model="valid" ref="form" lazy-validation>
 					    <v-text-field
-					      label="Имя"
+					      :label="$t('name')"
 					      v-model="item.first_name"
 					      :rules="nameRules"
 					      :counter="30"
 					      required
 					    ></v-text-field>
 					    <v-text-field
-					      label="Фамилия"
+					      :label="$t('last_name')"
 					      v-model="item.last_name"
 					      :rules="nameRules"
 					      :counter="30"
 					      required
 					    ></v-text-field>
 					    <v-text-field
-					      label="Отчество"
+					      :label="$t('patronymic')"
 					      v-model="item.patronymic"
 					      :rules="nameRules"
 					      :counter="30"
 					    ></v-text-field>
 						  <v-select
-					      label="Должность"
+					      :label="$t('position')"
 					      v-model="item.position"
 					      prepend-icon="card_travel"
 					      :items="positions"
@@ -35,13 +35,13 @@
 					      required
 					    ></v-select>
 						  <v-text-field
-					      label="Заработная плата"
+					      :label="$t('salary')"
 					      v-model="item.salary"
 					      prepend-icon="attach_money"
 					      required
 					    ></v-text-field>
 					    <v-text-field
-					      label="Адрес"
+					      :label="$t('address')"
 					      v-model="item.address"
 					      prepend-icon="home"
 					      required
@@ -62,27 +62,27 @@
 						      >
 						        <v-text-field
 						          slot="activator"
-						          label="День рождения"
+						          :label="$t('birthday')"
 						          v-model="item.birthday"
 						          prepend-icon="event"
 						          readonly
 						        ></v-text-field>
 						        <v-date-picker v-model="item.birthday" no-title scrollable>
 						          <v-spacer></v-spacer>
-						          <v-btn flat color="primary" @click="menu = false">Отмена</v-btn>
-						          <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+						          <v-btn flat color="primary" @click="menu = false">{{ $t('cancel') }}</v-btn>
+						          <v-btn flat color="primary" @click="$refs.menu.save(date)">{{ $t('ok') }}</v-btn>
 						        </v-date-picker>
 						      </v-menu>
 						    </v-flex>
 						  </v-layout>
 					    <v-text-field
-					      label="Номер телефона"
+					      :label="$t('phone_number')"
 					      v-model="item.phone_number"
 					      prepend-icon="phone_iphone"
 					      required
 					    ></v-text-field>
-					    <v-btn outline color="info" @click.native="save" :disabled="!valid">Сохранить</v-btn>
-            	<v-btn outline color="error" @click.native="close">Отмена</v-btn> 
+					    <v-btn outline color="info" @click.native="save" :disabled="!valid">{{ $t('ok') }}</v-btn>
+            	<v-btn outline color="error" @click.native="close">{{ $t('cancel') }}</v-btn> 
 					  </v-form>
           </v-card-text>
         </v-card>

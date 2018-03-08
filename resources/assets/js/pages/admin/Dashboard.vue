@@ -16,7 +16,7 @@
             <v-icon>home</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Главная</v-list-tile-title>
+            <v-list-tile-title>{{ $t('main') }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile :to="{name: 'employees'}">
@@ -24,7 +24,7 @@
             <v-icon>contact_mail</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Сотрудники</v-list-tile-title>
+            <v-list-tile-title>{{ $t('employees') }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -46,8 +46,7 @@ export default {
       clipped: false,
       fixed: true,
       items: [{
-        icon: 'bubble_chart',
-        title: 'Главная'
+        icon: 'bubble_chart'
       }],
       miniVariant: false
     }

@@ -1,6 +1,7 @@
 {
   "ok": "Ok",
   "cancel": "Отмена",
+  "attention": "Внимание!",
   "error_alert_title": "Ой...",
   "error_alert_text": "Произошла ошибка! Пожалуйста, попытайтесь позже.",
   "token_expired_alert_title": "Время сессии истекло!",
@@ -35,5 +36,24 @@
   "password_updated": "Ваш пароль был изменен!",
   "new_password": "Новый пароль",
   "login_with": "Войти через...",
-  "register_with": "Регистрация через..."
+  "register_with": "Регистрация через...",
+
+  "employees": "Сотрудники",
+  "employee": "Сотрудник",
+  "last_name": "Фамилия",
+  "patronymic": "Отчество",
+  "details": "Подробнее",
+  "strings": "строк",
+  "search_input": "Введите значение",
+  "position": "Должность",
+  "phone_number": "Номер телефона",
+  "salary": "Заработтная плата",
+  "address": "Адрес",
+  "birthday": "День рождения",
+  "add_image": "Добавить изображение",
+  "change_data": "Изменить данные",
+  "new_employee": "Новый сотрудник",
+  "edit_employee": "Изменить данные",
+  "main": "Главная",
+  "no_match_found": "Совпадение не найдено!"
 }

@@ -21,7 +21,7 @@ export default [
   { 
     path: '/', 
     name: 'welcome', 
-    component: Welcome 
+    redirect: {name: 'home'}
   },
 
   { 

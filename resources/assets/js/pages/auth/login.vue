@@ -90,8 +90,7 @@ export default {
 <style lang="scss" scoped>
 .auth-wrapper {
   width: 100%;
-  height: calc(100vh - 64px);
-  padding-top: 70px;
+  height: calc(100vh - 100px);
 }
 
 .auth {
@@ -99,7 +98,7 @@ export default {
   width: 100%;
   max-width: 900px;
   height: 500px;
-  margin: 0 auto;
+  margin: 30px auto;
   overflow: hidden;
   border-radius: 6px;
   box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.5);

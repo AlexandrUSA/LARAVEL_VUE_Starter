@@ -3,24 +3,24 @@
       <v-dialog v-model="deleteWindow" max-width="500px">
         <v-card>
 					<v-card-title>
-						<span class="headline">Внимание!</span>
+						<span class="headline">{{ $t('attention') }}</span>
 					</v-card-title>
 					<v-card-text>
 						<v-flex xs12>{{deleteMsg}}</v-flex>
 					</v-card-text>
 					<v-card-actions>
-						<v-btn outline color="info" @click.native="deleteConfirm">Удалить</v-btn>
-						<v-btn outline color="error" @click.native="deleteCancel">Отмена</v-btn>
+						<v-btn outline color="info" @click.native="deleteConfirm">{{ $t('ok') }}</v-btn>
+						<v-btn outline color="error" @click.native="deleteCancel">{{ $t('cancel') }}</v-btn>
 					</v-card-actions>
         </v-card>
       </v-dialog>  
       <v-card>
       	<v-card-title>
-	      	<h2>Сотрудники</h2>
+	      	<h2>{{ $t('employees') }}</h2>
 	      	<v-spacer></v-spacer>
 	      	<v-text-field
 						append-icon="search"
-						label="Введите название"
+						:label="$t('search_input')"
 						single-line			
 						v-model="search"
 	      	></v-text-field>
@@ -32,8 +32,8 @@
         v-model="selected"
         select-all
         item-key="id"
-				no-results-text="Совпадений не найдено!"
-       	rows-per-page-text="Строк: "
+				:no-results-text="$t('no_match_found')"
+       	:rows-per-page-text="$t('strings')"
         class="elevation-1"
       >
         <template slot="items" slot-scope="props">
@@ -49,7 +49,7 @@
           <td>{{ props.item.last_name }}</td>
           <td>{{ props.item.position }}</td>
           <td>
-          	<v-btn outline round :to="{name: 'employee', params: {id: props.item.id}}">Подробнее</v-btn>   
+          	<v-btn outline round :to="{name: 'employee', params: {id: props.item.id}}">{{ $t('details') }}</v-btn>   
           </td>
         </template>
 				<template slot="no-data">

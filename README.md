@@ -21,12 +21,7 @@
 #### Development
 
 ```bash
-# build and watch
 npm run watch
-
-# serve with hot reloading
-npm run hot
-```
 
 #### Production
 

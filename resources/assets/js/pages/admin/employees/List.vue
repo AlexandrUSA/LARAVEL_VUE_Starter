@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <div id="inspire">
       <v-dialog v-model="deleteWindow" max-width="500px">
         <v-card>
 					<v-card-title>
@@ -72,15 +72,27 @@
       		<v-icon>delete</v-icon>
     		</v-btn>
 			</transition>
-			</div>		
+			</div>
+			<v-snackbar
+      	:timeout="snackbarTimeout"
+      	top
+      	v-model="snackbarShow"
+      	multi-line
+      	color="info"
+    	>
+      {{ $t('delete_done') }}
+      <v-btn flat color="pink" @click.native="snackbarShow = false">{{ $t('ok') }}</v-btn>
+    </v-snackbar>		
 		</v-card>		
-	</v-app>		
+	</div>		
 </template>
 
 <script>
 	import {mapActions, mapGetters} from 'vuex';
 	export default {
 		data: () => ({
+			snackbarShow: false,
+			snackbarTimeout: 10000,
       // Поиск / Выборка
 			search: '',
 			selected: [],
@@ -116,8 +128,8 @@
 		}),
 		computed: {
 			deleteMsg() {
-				return (this.selected.length == 1) ? 'Вы действительно хотите удалить данный элемент?' :
-																						 'Вы действительно хотите удалить выбранные элементы?';
+				return (this.selected.length == 1) ? this.$t('delete_item_confirm') :
+																						 this.$t('delete_items_confirm');
 			},
 			...mapGetters({
       items: 'AdminEmployees/employees'
@@ -132,7 +144,8 @@
 				this.selected.forEach(el => this.deleteItem(el.id));
 				this.selected = [];
 				this.deleteWindow = false;
-			  this.editedID = null;			
+			  this.editedID = null;	
+			  this.snackbarShow = true;			
 			},
 			deleteCancel() {
 				this.deleteCategory = null;

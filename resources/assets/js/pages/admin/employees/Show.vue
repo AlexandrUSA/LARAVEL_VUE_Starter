@@ -20,7 +20,7 @@
 	  				</p>
 	  				<v-divider></v-divider>
 	  				<p class="employee__text">
-	  					<b>{{ $t('patronymic') }}:</b> <i>{{item.patronymic ? item.patronymic : 'Не указано'}}</i>
+	  					<b>{{ $t('patronymic') }}:</b> <i>{{item.patronymic ? item.patronymic : ''}}</i>
 	  				</p>
 	  				<v-divider></v-divider>
 	  				<p class="employee__text">
@@ -43,7 +43,6 @@
 	  					<b>{{ $t('birthday') }}:</b> <i>{{item.birthday}}</i>
 	  				</p>
 	  				<v-btn
-				      color="info"
 				      block
 				      :to="{name: 'employeeEdit', params: {id: item.id, employee: item}}"
 				    >

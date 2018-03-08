@@ -56,5 +56,8 @@
   "new_employee": "New employee",
   "edit_employee": "Edit employee",
   "main": "Main",
-  "no_match_found" : "No match found"
+  "no_match_found" : "No match found",
+  "delete_item_confirm": "Are you sure you want to delete this item?",
+  "delete_items_confirm": "Are you sure you want to delete selected items?",
+  "delete_done": "The information was successfully deleted!!"
 }

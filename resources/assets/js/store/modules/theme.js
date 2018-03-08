@@ -1,7 +1,7 @@
 // state
 export const state = {
   dark: true,
-  drawer: false
+  drawer: false,
 }
 
 // getters

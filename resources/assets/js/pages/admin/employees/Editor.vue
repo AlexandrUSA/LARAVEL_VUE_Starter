@@ -10,21 +10,21 @@
 					      :label="$t('name')"
 					      v-model="item.first_name"
 					      :rules="nameRules"
-					      :counter="30"
+					      :counter="70"
 					      required
 					    ></v-text-field>
 					    <v-text-field
 					      :label="$t('last_name')"
 					      v-model="item.last_name"
 					      :rules="nameRules"
-					      :counter="30"
+					      :counter="70"
 					      required
 					    ></v-text-field>
 					    <v-text-field
 					      :label="$t('patronymic')"
 					      v-model="item.patronymic"
 					      :rules="nameRules"
-					      :counter="30"
+					      :counter="70"
 					    ></v-text-field>
 						  <v-select
 					      :label="$t('position')"
@@ -126,10 +126,10 @@
 		},
 		computed: {
 			title() {
-				return (this.id) ? 'Hовый сотрудник' : 'Изменить сотрудника';
+				return (this.id) ? this.$t('edit_employee') : this.$t('new_employee');
 			},
 			titleIcon() {
-				return (this.id) ? 'person_add' : 'person';
+				return (this.id) ? 'person' : 'person_add';
 			}
 		},
 		created() {

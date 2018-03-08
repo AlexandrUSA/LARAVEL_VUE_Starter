@@ -5,7 +5,7 @@
       persistent
       :mini-variant="miniVariant"
       :clipped="clipped"
-      v-model="drawer"
+      :value="drawer"
       enable-resize-watcher
       fixed
       app
@@ -39,11 +39,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
       clipped: false,
-      drawer: true,
       fixed: true,
       items: [{
         icon: 'bubble_chart',
@@ -52,7 +52,9 @@ export default {
       miniVariant: false
     }
   },
-  name: 'App'
+  computed: mapGetters({
+    drawer: 'theme/drawer'
+  })
 }
 </script>
 

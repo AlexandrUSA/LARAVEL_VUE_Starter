@@ -2,10 +2,13 @@
   			<div class="employee">
   				<h2>Сотрудник</h2>
   				<div class="employee__avatar">
-  					<div class="avatar__overlay">
-  						<v-btn depressed large color="primary">{{avatarMsg}}</v-btn>
-  					</div>
-  					<img src="/static/images/no_image.svg" alt="34">
+  					<div class="employee__avatar-container">
+  						<div class="avatar__overlay">
+  							<v-btn depressed large color="primary">{{avatarMsg}}</v-btn>
+  						</div>
+  						<img :src="avatar" alt="avatar">
+  					</div>			
+  					
   				</div>
 	  			<div class="employee__descr">
 	  				<p class="employee__text">
@@ -69,7 +72,7 @@
 				return (this.item.avatar) ? 'Изменить изображение' : 'Добавить изображение';
 			},
 			avatar() {
-				return (this.item.avatar) ? this.item.avatar : "static/images/no_image.svg"
+				return (this.item.avatar) ? this.item.avatar : "http://dragene.no/wp-content/uploads/2016/06/default1.jpg"
 			}
 		},
 		created() {
@@ -93,6 +96,10 @@
 		font-family: 'Roboto', sans-serif;
 	}
 
+	h2 {
+		flex-basis: 100%;
+	}
+
 	p {
 		display: -webkit-flex;
 		display: -moz-flex;
@@ -109,6 +116,16 @@
 		background-color: rgba(255, 255, 255, .1);
 	}
 	.employee {
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-moz-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		-o-flex-wrap: wrap;
+		flex-wrap: wrap;
 		width: 90%;
 		margin: 30px auto;
 		padding: 15px;
@@ -122,14 +139,16 @@
 		clear: both;
 	}
 
-	.employee__avatar,
-	.employee__descr {
-	float: left;
+	.employee__avatar {	
+		width: 30%;
 	}
 
-	.employee__avatar {
+	.employee__avatar-container {
 		position: relative;
-		width: 30%;
+		width: 316px;
+		height: 316px;
+		margin: 0 auto;
+
 	}
 
 	.avatar__overlay {

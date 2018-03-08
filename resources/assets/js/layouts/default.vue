@@ -7,7 +7,7 @@
       <child/>
     </div>
     <!-- Футер -->
-    <v-footer fixed="true" app>
+    <v-footer app>
       <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
     </v-footer>
   </v-app>

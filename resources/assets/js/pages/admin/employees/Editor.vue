@@ -2,7 +2,7 @@
 	<div class="employee__create">
         <v-card>
           <v-card-title>
-            <h2>Hовый сотрудник <v-icon class="title__icon">person_add</v-icon></h2>
+            <h2>{{title}} <v-icon class="title__icon">{{titleIcon}}</v-icon></h2>
           </v-card-title>
           <v-card-text>
             <v-form v-model="valid" ref="form" lazy-validation>
@@ -122,6 +122,14 @@
 	        'Директор',
 	        'Сотрудник'
 	      ],
+			}
+		},
+		computed: {
+			title() {
+				return (this.id) ? 'Hовый сотрудник' : 'Изменить сотрудника';
+			},
+			titleIcon() {
+				return (this.id) ? 'person_add' : 'person';
 			}
 		},
 		created() {

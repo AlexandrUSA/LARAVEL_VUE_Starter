@@ -1,6 +1,6 @@
 <template>
   <v-toolbar app>
-<!--       <v-toolbar-side-icon></v-toolbar-side-icon> -->
+      <v-toolbar-side-icon @click="switchDrawer()"></v-toolbar-side-icon>
       <v-btn flat :to="{ name: user ? 'home' : 'welcome' }">{{ appName }}</v-btn>
       <locale-dropdown/>
       <v-spacer></v-spacer>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
 import SettingsDropdown from './SettingsDropdown'
 
@@ -27,23 +27,23 @@ export default {
         'All', 'Family', 'Friends', 'Coworkers'
       ],
   }),
-
   computed: mapGetters({
     user: 'auth/user'
   }),
-
   components: {
     LocaleDropdown,
     SettingsDropdown
   },
-
   methods: {
     async logout () {
       // Выйти из учетной записи
       await this.$store.dispatch('auth/logout')
       // Перенаправление на сттраницу авторизации
       this.$router.push({ name: 'login' })
-    }
+    },
+      ...mapActions({
+      switchDrawer: 'theme/switchDrawer'
+    })
   }
 }
 </script>

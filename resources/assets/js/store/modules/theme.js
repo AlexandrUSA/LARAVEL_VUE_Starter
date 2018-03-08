@@ -1,17 +1,22 @@
 // state
 export const state = {
-  dark: true
+  dark: true,
+  drawer: false
 }
 
 // getters
 export const getters = {
-  dark: state => state.dark
+  dark: state => state.dark,
+  drawer: state => state.drawer
 }
 
 // mutations
 export const mutations = {
- switchTheme (state, payload) {
+ 	switchTheme (state, payload) {
     state.dark = payload
+  },
+  switchDrawer (state, payload) {
+  	state.drawer = !state.drawer
   }
 }
 
@@ -19,5 +24,8 @@ export const mutations = {
 export const actions = {
   switchTheme ({ commit }, payload) {
     commit('switchTheme', payload)
+  },
+  switchDrawer ({ commit }) {
+    commit('switchDrawer')
   }
 }

@@ -4,7 +4,7 @@
   				<div class="employee__avatar">
   					<div class="employee__avatar-container">
   						<div class="avatar__overlay">
-  							<v-btn depressed large color="primary">{{avatarMsg}}</v-btn>
+  							<v-btn depressed large>{{avatarMsg}}</v-btn>
   						</div>
   						<img :src="avatar" alt="avatar">
   					</div>			
@@ -68,7 +68,7 @@
 		},
 		computed: {
 			avatarMsg() {
-				return (this.item.avatar) ? 'Изменить изображение' : 'Добавить изображение';
+				return (this.item.avatar) ? this.$t('change_image') : this.$t('add_image');
 			},
 			avatar() {
 				return (this.item.avatar) ? this.item.avatar : "http://dragene.no/wp-content/uploads/2016/06/default1.jpg"

@@ -43,10 +43,12 @@ $polyfills = [
   <script>window.config = @json($config);</script>
 
   {{-- Подключаем нужные поллифилы через polyfill.io --}}
-<!--   <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features={{ implode(',', $polyfills) }}"></script>
- -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features={{ implode(',', $polyfills) }}"></script>
+
   {{-- Загрузка скриптов --}}
   @if (app()->isLocal())
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>
   @else
     <script src="{{ mix('js/manifest.js') }}"></script>

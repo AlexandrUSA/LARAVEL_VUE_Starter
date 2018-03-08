@@ -22,7 +22,7 @@
 
 ```bash
 npm run watch
-
+```
 #### Production
 
 ```bash

@@ -8,22 +8,22 @@ import { sync } from 'vuex-router-sync'
 Vue.use(Meta)
 Vue.use(Router)
 
-// The middleware for every page of the application.
+// Глобальные посредники, срабатывающие при переходе на любые страницы
 const globalMiddleware = ['locale', 'check-auth']
 
-// Load middleware modules dynamically.
+// Динамическая загрузка посредников
 const routeMiddleware = resolveMiddleware(
   require.context('~/middleware', false, /.*\.js$/)
 )
 
 const router = createRouter()
 
-sync(store, router)
+sync(store, router) // Синхронизируем роутер с хранилищем
 
 export default router
 
 /**
- * Create a new router instance.
+ * Создаем роутер.
  *
  * @return {Router}
  */
@@ -48,26 +48,24 @@ function createRouter () {
  * @param {Function} next
  */
 async function beforeEach (to, from, next) {
-  // Get the matched components and resolve them.
+  // Получаем озможные асинхронные компоненты и хуки и разрешаем их.
   const components = await resolveComponents(
     router.getMatchedComponents({ ...to })
   )
+  // Если их нет, то разрешаем загрузку
+  if (components.length === 0) return next();
 
-  if (components.length === 0) {
-    return next()
-  }
-
-  // Start the loading bar.
+  // Стартуем наш загрузочный бар (если он имееттся в комп-те).
   if (components[components.length - 1].loading !== false) {
     router.app.$nextTick(() => router.app.$loading.start())
   }
 
-  // Get the middleware for all the matched components.
+  // Получаем посредников для всех найденных компонентов.
   const middleware = getMiddleware(components)
 
-  // Call each middleware.
+  // Вызываем каждого посредника.
   callMiddleware(middleware, to, from, (...args) => {
-    // Set the application layout only if "next()" was called with no args.
+    // Загружаем разметку ТОЛЬКО если "next()" был вызван без аргументов
     if (args.length === 0) {
       router.app.setLayout(components[0].layout || '')
     }
@@ -77,20 +75,20 @@ async function beforeEach (to, from, next) {
 }
 
 /**
- * Global after hook.
+ * Глобальный хук завершения зарузки компонента.
  *
  * @param {Route} to
  * @param {Route} from
  * @param {Function} next
  */
 async function afterEach (to, from, next) {
-  await router.app.$nextTick()
+  await router.app.$nextTick()  // Ждем прорисовки ДОМа
 
-  router.app.$loading.finish()
+  router.app.$loading.finish()  // Сигнализируем об окончании загрузки
 }
 
 /**
- * Call each middleware.
+ * Вызываем каждого посредника для компонента.
  *
  * @param {Array} middleware
  * @param {Route} to
@@ -98,34 +96,32 @@ async function afterEach (to, from, next) {
  * @param {Function} next
  */
 function callMiddleware (middleware, to, from, next) {
-  const stack = middleware.reverse()
+  const stack = middleware.reverse()  // массив посредников
 
   const _next = (...args) => {
-    // Stop if "_next" was called with an argument or the stack is empty.
-    if (args.length > 0 || stack.length === 0) {
-      if (args.length > 0) {
-        router.app.$loading.finish()
-      }
-
-      return next(...args)
+    // Завершаем загрузку если "_next" были переданы арг-ты или стек пустой.
+    if (args.length || !stack.length) {
+      if (args.length) router.app.$loading.finish();
+      
+      return next(...args);
     }
 
-    const middleware = stack.pop()
+    const middleware = stack.pop()  // Поочереди вытаскиваем посредника
 
-    if (typeof middleware === 'function') {
+    if (typeof middleware === 'function') { // Если он -функция - выполняем ее
       middleware(to, from, _next)
-    } else if (routeMiddleware[middleware]) {
-      routeMiddleware[middleware](to, from, _next)
+    } else if (routeMiddleware[middleware]) { // Если нет, ищем его в папке middleware
+      routeMiddleware[middleware](to, from, _next)  // и выполняем
     } else {
-      throw Error(`Undefined middleware [${middleware}]`)
+      throw Error(`Посредника [${middleware}] не существует!`)  // Если не нашли - ругаемся
     }
   }
 
-  _next()
+  _next() // Продолжаем поход по посредникам
 }
 
 /**
- * Resolve async components.
+ * Работаем с асинхронными компонентами.
  *
  * @param  {Array} components
  * @return {Array}
@@ -137,7 +133,7 @@ async function resolveComponents (components) {
 }
 
 /**
- * Merge the the global middleware with the components middleware.
+ * Обьединяем глобальные посредники с посредниками компонента.
  *
  * @param  {Array} components
  * @return {Array}
@@ -157,7 +153,7 @@ function getMiddleware (components) {
 }
 
 /**
- * Scroll Behavior
+ * Сохраняем позицию скролла при навигации
  *
  * @link https://router.vuejs.org/en/advanced/scroll-behavior.html
  *
@@ -167,24 +163,19 @@ function getMiddleware (components) {
  * @return {Object}
  */
 function scrollBehavior (to, from, savedPosition) {
-  if (savedPosition) {
-    return savedPosition
-  }
+  if (savedPosition) return savedPosition;
 
-  if (to.hash) {
-    return { selector: to.hash }
-  }
+  if (to.hash) return { selector: to.hash };
 
   const [component] = router.getMatchedComponents({ ...to }).slice(-1)
 
-  if (component && component.scrollToTop === false) {
-    return {}
-  }
+  if (component && component.scrollToTop === false)  return {};
 
   return { x: 0, y: 0 }
 }
 
 /**
+  Работаем с посредником
  * @param  {Object} requireContext
  * @return {Object}
  */

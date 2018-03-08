@@ -20,6 +20,12 @@
             </v-list-tile-avatar>
             <v-list-tile-title v-text="$t('settings')"/>
           </v-list-tile>
+          <v-list-tile :to="{ name: 'dashboard' }">
+            <v-list-tile-avatar>
+              <v-icon>dashboard</v-icon>
+            </v-list-tile-avatar>
+            <v-list-tile-title v-text="$t('dashboard')"/>
+          </v-list-tile>
           <v-list-tile @click.prevent="logout">
             <v-list-tile-avatar>
               <fa icon="sign-out-alt" fixed-width/>
@@ -59,7 +65,7 @@ export default {
 }
 
 .list {
-  background-color: #fff;
+  
 }
 
 .profile-avatar {

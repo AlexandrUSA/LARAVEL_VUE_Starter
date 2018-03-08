@@ -1,9 +1,7 @@
 <template>
-  <v-toolbar>
-      <v-toolbar-side-icon></v-toolbar-side-icon>
-      <router-link :to="{ name: user ? 'home' : 'welcome' }">
-        {{ appName }}
-      </router-link>
+  <v-toolbar app>
+<!--       <v-toolbar-side-icon></v-toolbar-side-icon> -->
+      <v-btn flat :to="{ name: user ? 'home' : 'welcome' }">{{ appName }}</v-btn>
       <locale-dropdown/>
       <v-spacer></v-spacer>
         <!--  Пользователь -->

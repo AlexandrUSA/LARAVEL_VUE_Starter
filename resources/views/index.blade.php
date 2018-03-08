@@ -32,7 +32,7 @@ $polyfills = [
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body>
-  <div id="app">
+  <div id="root">
     <noscript>
       <h2 style="text-align: center;">Внимание!</h2>
       <p>Для работы приложения необходимо включить Javascript!</p>

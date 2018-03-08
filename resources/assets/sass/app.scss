@@ -15,6 +15,7 @@
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
+      background-color: transparent;
       -webkit-transition-delay: 9999s;
       transition-delay: 9999s;
       -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
@@ -46,10 +47,6 @@
 
   .menuable__content__active {
     background-color: #fff;
-  }
-
-  .content-wrapper {
-    padding: 0 30px;
   }
 
   #theme-switcher label {

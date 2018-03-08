@@ -1,5 +1,5 @@
 <template>
-  <div id="app" data-app="true">
+  <div id="app">
     <loading ref="loading"/>
     <transition name="page" mode="out-in">
       <component v-if="layout" :is="layout"></component>
@@ -23,7 +23,7 @@ const layouts = requireContext.keys()
   }, {})
 
 export default {
-  el: '#app',
+  el: '#root',
 
   components: {
     Loading

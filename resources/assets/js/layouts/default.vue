@@ -1,9 +1,15 @@
 <template>
   <v-app :dark="theme">
+    <!-- Шапка -->
     <navbar/>
+    <!-- Основной контент -->
     <div class="content-wrapper">
       <child/>
     </div>
+    <!-- Футер -->
+    <v-footer fixed="true" app>
+      <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
+    </v-footer>
   </v-app>
 </template>
 

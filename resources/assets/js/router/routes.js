@@ -1,3 +1,5 @@
+import store from '~/store'
+
 const Home = () => import('~/pages/home').then(m => m.default || m)
 const Welcome = () => import('~/pages/welcome').then(m => m.default || m)
 
@@ -9,6 +11,11 @@ const PasswordRequest = () => import('~/pages/auth/password/email').then(m => m.
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
 const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.default || m)
 const SettingsPassword = () => import('~/pages/settings/password').then(m => m.default || m)
+
+const AdminDashboard = () => import('~/pages/admin/Dashboard').then(m => m.default || m)
+const AdminEmployees = () => import('~/pages/admin/employees/List').then(m => m.default || m)
+const AdminEmployee = () => import('~/pages/admin/employees/Show').then(m => m.default || m)
+const AdminEmployeeEdit = () => import('~/pages/admin/employees/Editor').then(m => m.default || m)
 
 export default [
   { 
@@ -63,6 +70,39 @@ export default [
         component: SettingsPassword 
       }
     ] 
+  },
+  {
+    name: 'dashboard',
+    path: '/dashboard',
+    component: AdminDashboard,
+    children: [
+      {
+        path: 'employees',
+        name: 'employees',
+        component: AdminEmployees,
+        beforeEnter(from, to, next){
+          store.dispatch('AdminEmployees/load');
+          next();
+        }
+      },
+      {
+        path: 'employees/:id',
+        name: 'employee',
+        component: AdminEmployee,
+        props: true
+      },
+      {
+        path: 'employees/:id/edit',
+        name: 'employeeEdit',
+        component: AdminEmployeeEdit,
+        props: true
+      },
+      {
+        path: 'employees/create',
+        name: 'employeeCreate',
+        component: AdminEmployeeEdit
+      }
+    ]
   },
   { 
     path: '*', 

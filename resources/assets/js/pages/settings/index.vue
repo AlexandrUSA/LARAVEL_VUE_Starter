@@ -126,5 +126,6 @@ export default {
   display: -o-flex;
   display: flex;
   justify-content: center;
+  padding-top: 64px;
 }
 </style>

@@ -25,6 +25,8 @@
   "send_password_reset_link": "Send Password Reset Link",
   "settings": "Settings",
   "profile": "Profile",
+  "required_value": "The field is required!",
+  "invalid_format": "Invalid format!",
   "your_info": "Your Info",
   "info_updated": "Your info has been updated!",
   "update": "Update",

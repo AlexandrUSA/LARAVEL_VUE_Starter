@@ -1,52 +1,40 @@
 <template>
-  <v-form @submit.prevent="login" @keydown="form.onKeydown($event)">
-
-    <label for="Email">{{ $t('email') }}</label>
-    <input id="Email" type="email" name="email" 
-           v-model="form.email"
-           :class="{ 'is-invalid': form.errors.has('email') }">
+  <v-form v-model="valid" 
+          @submit.prevent="login" 
+          @keydown="form.onKeydown($event)">
     <has-error :form="form" field="email"/>
-    <div class="form-group">
-      <label for="Password">{{ $t('password') }}</label>
-      <input id="Password" type="password"
-             v-model="form.password" 
-             :class="{ 'is-invalid': form.errors.has('password') }">
-      <has-error :form="form" field="password"/>
-    </div>
-    <v-btn large block type="submit" 
-          :loading="form.busy"
-          color="teal lighten-4">
-    {{ $t('login') }}
-    </v-btn>
-    <v-btn flat small
-           :to="{ name: 'password.request' }">
-      {{ $t('forgot_password') }}
-    </v-btn>
-    <!-- <div class="form-group">
-      <label for="Email">{{ $t('email') }}</label>
-      <input v-model="form.email" type="email" name="email" class="form-control"  aria-describedby="emailHelp" 
-            :placeholder="$t('email')"
-            :class="{ 'is-invalid': form.errors.has('email') }">
-      <has-error :form="form" field="email"/>
-    </div>
-    <div class="form-group">
-      <label for="Password">{{ $t('password') }}</label>
-      <input type="password" id="Password" class="form-control" 
-             v-model="form.password" 
-             :class="{ 'is-invalid': form.errors.has('password') }">
-      <has-error :form="form" field="password"/>
-    </div>
+    <v-text-field
+      :label="$t('email')"
+      v-model="form.email"
+      :rules="emailRules"
+      prepend-icon="email"
+      type="email"
+      required
+    ></v-text-field>
+    
+    <has-error :form="form" field="password" />
+    <v-text-field
+      :label="$t('password')"
+      v-model="form.password"
+      :rules="passwordRules"
+      prepend-icon="vpn_key"
+      type="password"
+      required
+    ></v-text-field>
+    
     <v-checkbox
       :label="$t('remember_me')"
       v-model="remember"
       name="remember"
-      color="blue darken-3"
     ></v-checkbox>
-    <v-btn color="blue darken-3" block type="submit" :loading="form.busy">{{ $t('login') }}</v-btn>
+    <v-btn block large type="submit" 
+           :loading="form.busy">
+         {{ $t('login') }}
+    </v-btn>
     <v-btn flat small
            :to="{ name: 'password.request' }">
       {{ $t('forgot_password') }}
-    </v-btn> -->
+    </v-btn>
   </v-form>         
 </template>
 
@@ -70,6 +58,13 @@ export default {
       email: '',
       password: '',
     }),
+    valid: false,
+    emailRules: [
+      v => !!v || "Введите значение"
+    ],
+    passwordRules: [
+      v => !!v || "Введите значение"
+    ],
     remember: false
   }),
 
@@ -95,47 +90,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .btn--block {
-    color: #fff !important;
-  }
 
-  form{
-  padding: 20px 0;
-  position: relative;
-  z-index: 2;
-  
-  input{
-    display: block;
-    appearance: none;
-    outline: 0;
-    border: 1px solid rgba(255, 255, 255, .4);
-    background-color: rgba(255, 255, 255, .2);
-    width: 250px;
-    
-    border-radius: 3px;
-    padding: 10px 15px;
-    margin: 0 auto 10px auto;
-    display: block;
-    text-align: center;
-    font-size: 18px;
-    
-    color: white;
-    
-    transition-duration: 0.25s;
-    font-weight: 300;
-    
-    &:hover{
-      background-color: rgba(255, 255, 255, 0.4);
-    }
-    
-    &:focus{
-      background-color: white;
-      width: 300px;
-      
-      color: #53e3a6;
-    }
-  }
-}
 
 
 </style>

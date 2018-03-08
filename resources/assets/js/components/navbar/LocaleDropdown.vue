@@ -3,13 +3,11 @@
     <v-menu :nudge-width="100">
       <v-btn 
         flat 
-        color="white"
         slot="activator"
       >
-        <span :class="[textColor]">{{ locales[locale] }}</span>
+        <span>{{ locales[locale] }}</span>
         <fa 
           pull="right" 
-          :class="[iconColor]" 
           icon="caret-down" 
         />
         </v-btn>
@@ -32,16 +30,6 @@ import { mapGetters } from 'vuex'
 import { loadMessages } from '~/plugins/i18n'
 
 export default {
-  props: {
-    textColor: {
-      type: String,
-      default: 'white--text'
-    },
-    iconColor: {
-      type: String,
-      default: 'info--text'
-    }
-  },
   computed: mapGetters({
     locale: 'lang/locale',
     locales: 'lang/locales'
@@ -59,7 +47,7 @@ export default {
 </script>
 
 <style>
-  #locale .white--text {
+  #locale .btn__content {
     text-transform: none;
   }
 </style>

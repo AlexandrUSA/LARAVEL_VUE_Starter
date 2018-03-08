@@ -1,8 +1,63 @@
 @import 'variables';
-@import '~bootstrap/scss/bootstrap';
 @import '~sweetalert2/src/sweetalert2';
 
-@import 'elements/card';
-@import 'elements/navbar';
-@import 'elements/buttons';
+//@import 'elements/card';
+//@import 'elements/navbar';
+//@import 'elements/buttons';
 @import 'elements/transitions';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+      -webkit-transition-delay: 9999s;
+      transition-delay: 9999s;
+      -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+      transition: color 9999s ease-out, background-color 9999s ease-out;
+  }
+  
+  html {
+    overflow-y: auto;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #app {
+    width: 100%;
+    height: 100%;
+  }
+
+  .toolbar__content {
+    padding: 0 30px;
+  }
+
+  .menuable__content__active {
+    background-color: #fff;
+  }
+
+  .content-wrapper {
+    padding: 0 30px;
+  }
+
+  #theme-switcher label {
+    padding-left: 40px;
+    font-size: 14px;
+  }
+
+  .input-group__error {
+    flex:none !important;
+  }
+

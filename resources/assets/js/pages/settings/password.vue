@@ -1,36 +1,28 @@
 <template>
-  <card :title="$t('your_password')">
-    <form @submit.prevent="update" @keydown="form.onKeydown($event)">
-      <alert-success :form="form" :message="$t('password_updated')"/>
+    <v-form v-model="valid" @submit.prevent="update" @keydown="form.onKeydown($event)">
+    <v-text-field
+      :label="$t('new_password')"
+      v-model="form.password"
+      :rules="passwordRules"
+      :counter="160"
+      prepend-icon="vpn_key"
+      type="password"
+      required
+    ></v-text-field>
+    <has-error :form="form" field="password"/>
+    <v-text-field
+      :label="$t('confirm_password')"
+      v-model="form.password_confirmation"
+      :rules="passwordRules"
+      :counter="160"
+      prepend-icon="vpn_key"
+      type="password"
+      required
+    ></v-text-field>
+    <has-error :form="form" field="password_confirmation" />
 
-      <!-- Password -->
-      <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">{{ $t('new_password') }}</label>
-        <div class="col-md-7">
-          <input v-model="form.password" type="password" name="password" class="form-control"
-            :class="{ 'is-invalid': form.errors.has('password') }">
-          <has-error :form="form" field="password"/>
-        </div>
-      </div>
-
-      <!-- Password Confirmation -->
-      <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">{{ $t('confirm_password') }}</label>
-        <div class="col-md-7">
-          <input v-model="form.password_confirmation" type="password" name="password_confirmation" class="form-control"
-            :class="{ 'is-invalid': form.errors.has('password_confirmation') }">
-          <has-error :form="form" field="password_confirmation"/>
-        </div>
-      </div>
-
-      <!-- Submit Button -->
-      <div class="form-group row">
-        <div class="col-md-9 ml-md-auto">
-          <v-button type="success" :loading="form.busy">{{ $t('update') }}</v-button>
-        </div>
-      </div>
-    </form>
-  </card>
+    <v-btn large block :loading="form.busy" type="submit">{{ $t('update') }}</v-btn>
+  </v-form>
 </template>
 
 <script>
@@ -44,10 +36,14 @@ export default {
   },
 
   data: () => ({
+    valid: false,
     form: new Form({
       password: '',
       password_confirmation: ''
-    })
+    }),
+    passwordRules: [
+      v => !!v || "Введите значение"
+    ],
   }),
 
   methods: {

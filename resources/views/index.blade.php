@@ -26,12 +26,18 @@ $polyfills = [
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#317EFB">
   <title>{{ config('app.name') }}</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <noscript>
+      <h2 style="text-align: center;">Внимание!</h2>
+      <p>Для работы приложения необходимо включить Javascript!</p>
+    </noscript>
+  </div>
 
   {{-- Глобальный обьект конфигурации --}}
   <script>window.config = @json($config);</script>

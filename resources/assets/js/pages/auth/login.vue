@@ -5,13 +5,15 @@
         <div class="auth-switch__text"
              :class="{'fadeIn': !switchText, 'fadeOut': switchText}">
           <h2> {{ title }} </h2> 
-          <v-btn large @click.prevent="toggleAuth">{{message}}</v-btn>
+          <v-btn @click.prevent="toggleAuth">{{message}}</v-btn>
         </div>    
       </div>
       <div class="auth-form">
-        <transition  enter-active-class="AuthEnter" leave-active-class="AuthLeave" mode="out-in">
-          <component :is="authComponent"></component>
-        </transition>
+        <v-card height="500">
+          <transition  enter-active-class="AuthEnter" leave-active-class="AuthLeave" mode="out-in">
+            <component :is="authComponent"></component>
+          </transition>
+        </v-card>      
       </div>
     </div>
   </div>
@@ -90,12 +92,6 @@ export default {
   width: 100%;
   height: calc(100vh - 64px);
   padding-top: 70px;
-  background: #50a3a2;
-  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
-  transition: background-color 1s;
 }
 
 .auth {
@@ -130,7 +126,6 @@ export default {
 .auth-switch {
   left: 50%; 
   padding-top: 120px;
-  color: #fff;
   text-align: center;
 }
 
@@ -163,15 +158,13 @@ form {
   left: 0%;
   z-index: 2;
   text-align: center;
-  padding: 30px;
   transition-property: left, background-color;
-  box-shadow: 0 0 15px #8E8E8E;
+  box-shadow: 0 0 15px #000;
 }
 
-.form-control {
-  padding: 15px 10px;
+.card {
+  padding: 50px 30px;
 }
-
 
 .fadeOut {
   transform: scale(0);

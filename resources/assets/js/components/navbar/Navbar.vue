@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar color="grey darken-1" dark>
+  <v-toolbar>
       <v-toolbar-side-icon></v-toolbar-side-icon>
       <router-link :to="{ name: user ? 'home' : 'welcome' }">
         {{ appName }}
@@ -59,10 +59,5 @@ export default {
 
 .list {
   background-color: #fff;
-}
-
-a:hover {
-  color: #000 !important;
-  text-decoration: none !important;
 }
 </style>

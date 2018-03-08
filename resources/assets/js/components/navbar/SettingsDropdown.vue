@@ -3,14 +3,13 @@
     <v-menu :nudge-width="100">
       <v-btn 
         flat 
-        color="white"
+        large
         slot="activator"
       >
         <img :src="user.photo_url" class="profile-avatar">
-        <span :class="[textColor]">{{ user.name }}</span>
+        <span>{{ user.name }}</span>
         <fa 
           pull="right" 
-          :class="[iconColor]" 
           icon="caret-down" 
         />
         </v-btn>
@@ -38,16 +37,6 @@ import { mapGetters } from 'vuex'
 import { loadMessages } from '~/plugins/i18n'
 
 export default {
-  props: {
-    textColor: {
-      type: String,
-      default: 'white--text'
-    },
-    iconColor: {
-      type: String,
-      default: 'info--text'
-    }
-  },
   computed: mapGetters({
     user: 'auth/user'
   }),
@@ -55,7 +44,7 @@ export default {
     async logout () {
       // Выйти из учетной записи
       await this.$store.dispatch('auth/logout')
-      // Перенаправление на сттраницу авторизации
+      // Перенаправление на страницу авторизации
       this.$router.push({ name: 'login' })
     }
   }

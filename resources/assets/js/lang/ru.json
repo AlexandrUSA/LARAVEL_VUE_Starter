@@ -25,6 +25,8 @@
   "send_password_reset_link": "Отправить ссылку для сброса пароля",
   "settings": "Настройки",
   "profile": "Профиль",
+  "required_value": "Введите значение!",
+  "invalid_format": "Неверный формат!",
   "your_info": "Ваша информация",
   "info_updated": "Ваша информация была обновлена!",
   "update": "Обновить",

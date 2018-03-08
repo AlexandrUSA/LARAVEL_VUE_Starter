@@ -1,36 +1,24 @@
 <template>
-  <card :title="$t('your_info')">
-    <form @submit.prevent="update" @keydown="form.onKeydown($event)">
-      <alert-success :form="form" :message="$t('info_updated')"/>
-
-      <!-- Name -->
-      <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">{{ $t('name') }}</label>
-        <div class="col-md-7">
-          <input v-model="form.name" type="text" name="name" class="form-control"
-            :class="{ 'is-invalid': form.errors.has('name') }">
-          <has-error :form="form" field="name"/>
-        </div>
-      </div>
-
-      <!-- Email -->
-      <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-        <div class="col-md-7">
-          <input v-model="form.email" type="email" name="email" class="form-control"
-            :class="{ 'is-invalid': form.errors.has('email') }">
-          <has-error :form="form" field="email" />
-        </div>
-      </div>
-
-      <!-- Submit Button -->
-      <div class="form-group row">
-        <div class="col-md-9 ml-md-auto">
-          <v-button type="success" :loading="form.busy">{{ $t('update') }}</v-button>
-        </div>
-      </div>
-    </form>
-  </card>
+  <v-form v-model="valid" @submit.prevent="update" @keydown="form.onKeydown($event)">
+    <v-text-field
+      :label="$t('name')"
+      v-model="form.name"
+      :rules="form.nameRules"
+      :counter="70"
+      prepend-icon="person"
+      required
+    ></v-text-field>
+    <has-error :form="form" field="name"/>
+    <v-text-field
+      :label="$t('email')"
+      v-model="form.email"
+      :rules="form.emailRules"
+      prepend-icon="email"
+      required
+    ></v-text-field>
+    <has-error :form="form" field="email" />
+    <v-btn large block :loading="form.busy" type="submit">{{ $t('update') }}</v-btn>
+  </v-form>
 </template>
 
 <script>
@@ -45,9 +33,18 @@ export default {
   },
 
   data: () => ({
+    valid: false,
     form: new Form({
       name: '',
-      email: ''
+      nameRules: [
+        v => !!v || this.$t('required_value'),
+        v => v.length <= 70 || 'Name must be less than 70 characters'
+      ],
+      email: '',
+      emailRules: [
+        v => !!v || this.$t('required_value'),
+        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+      ]
     })
   }),
 

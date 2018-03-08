@@ -1,6 +1,6 @@
 <template>
-  <v-toolbar color="grey darken-1" dark>
-      <v-toolbar-side-icon></v-toolbar-side-icon>
+  <v-toolbar>
+      <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
       <router-link :to="{ name: user ? 'home' : 'welcome' }">
         {{ appName }}
       </router-link>
@@ -9,7 +9,6 @@
         <!--  Пользователь -->
         <template v-if="user">
           <settings-dropdown></settings-dropdown>
-          <!-- <v-btn  flat @click.prevent="logout">{{ $t('logout') }}</v-btn> -->
         </template>     
         <!-- Гость -->
         <template v-else>

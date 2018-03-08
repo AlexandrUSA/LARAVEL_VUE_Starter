@@ -1,11 +1,32 @@
 <template>
-  <div class="row">
+  <v-card>
+    <v-card-title primary-title>
+      <h2>
+        {{ $t('reset_password') }}
+      </h2>
+    </v-card-title>
+    <v-form @submit.prevent="send" @keydown="form.onKeydown($event)">
+      <v-text-field
+        :label="$t('email')"
+        v-model="form.email"
+        prepend-icon="email"
+        required
+      ></v-text-field>
+      <has-error :form="form" field="email" />
+      <v-btn large block :loading="form.busy" type="submit">
+        {{ $t('send_password_reset_link') }}
+      </v-btn>
+    </v-form>
+  </v-card>
+  
+
+<!--   <div class="row">
     <div class="col-lg-8 m-auto">
       <card :title="$t('reset_password')">
         <form @submit.prevent="send" @keydown="form.onKeydown($event)">
           <alert-success :form="form" :message="status"/>
 
-          <!-- Email -->
+
           <div class="form-group row">
             <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
             <div class="col-md-7">
@@ -15,7 +36,7 @@
             </div>
           </div>
 
-          <!-- Submit Button -->
+
           <div class="form-group row">
             <div class="col-md-9 ml-md-auto">
               <v-button :loading="form.busy">
@@ -26,7 +47,7 @@
         </form>
       </card>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -57,3 +78,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .card {
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+  }
+</style>

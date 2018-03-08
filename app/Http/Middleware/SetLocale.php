@@ -7,7 +7,7 @@ use Closure;
 class SetLocale
 {
     /**
-     * Handle an incoming request.
+     * Устанавливает новый язык для приложения
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -15,22 +15,24 @@ class SetLocale
      */
     public function handle($request, Closure $next)
     {
+        // Если переданный locale есть в списке разрешенных locales
         if ($locale = $this->parseLocale($request)) {
-            app()->setLocale($locale);
+            app()->setLocale($locale);  // Устанавливаем его
         }
 
-        return $next($request);
+        return $next($request); // След. посредник
     }
 
     /**
+    Функция проверяет, естьли в списке locales конфига переданный locale
      * @param  \Illuminate\Http\Request $request
      * @return string|null
      */
     protected function parseLocale($request)
     {
-        $locales = config('app.locales');
+        $locales = config('app.locales'); 
 
-        $locale = $request->server('HTTP_ACCEPT_LANGUAGE');
+        $locale = $request->server('HTTP_ACCEPT_LANGUAGE'); 
         $locale = substr($locale, 0, strpos($locale, ',') ?: strlen($locale));
 
         if (array_key_exists($locale, $locales)) {

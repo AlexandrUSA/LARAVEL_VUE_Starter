@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :dark="theme">
     <navbar/>
     <div class="content-wrapper">
       <child/>
@@ -9,31 +9,16 @@
 
 <script>
 import Navbar from '~/components/navbar/Navbar'
-
+import { mapGetters } from 'vuex';
 export default {
   name: 'MainLayout',
-
+  computed: {
+    ...mapGetters({
+      'theme': 'theme/dark'
+    })
+  },
   components: {
     Navbar
   }
 }
 </script>
-
-<style>
-/*  .content-wrapper {
-    max-width: 1170px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }*/
-/*  .content {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    height: calc(100vh - 56px);
-  }*/
-
-</style>

@@ -1,44 +1,56 @@
 <template>
-<form @submit.prevent="register" @keydown="form.onKeydown($event)">
-          <!-- Name -->
-          <div class="form-group row">
-            <label class="col-form-label text-md-right">{{ $t('name') }}</label>
-            <input v-model="form.name" type="text" name="name" class="form-control"
-              :class="{ 'is-invalid': form.errors.has('name') }">
-            <has-error :form="form" field="name"/>
-          </div>
+  <v-form v-model="valid" @submit.prevent="register" @keydown="form.onKeydown($event)">
 
-          <!-- Email -->
-          <div class="form-group row">
-            <label class="col-form-label text-md-right">{{ $t('email') }}</label>
-            <input v-model="form.email" type="email" name="email" class="form-control"
-              :class="{ 'is-invalid': form.errors.has('email') }">
-            <has-error :form="form" field="email"/>
-          </div>
+    <!-- Имя пользователя -->
+    <has-error :form="form" field="name"/>
+    <v-text-field
+      :label="$t('name')"
+      v-model="form.name"
+      :rules="nameRules"
+      :counter="70"
+      prepend-icon="person"
+      required
+    ></v-text-field>
 
-          <!-- Password -->
-          <div class="form-group row">
-            <label class="col-form-label text-md-right">{{ $t('password') }}</label>
-            <input v-model="form.password" type="password" name="password" class="form-control"
-              :class="{ 'is-invalid': form.errors.has('password') }">
-            <has-error :form="form" field="password"/>
-          </div>
+    <!-- Емаил -->
+    <has-error :form="form" field="email" />
+    <v-text-field
+      :label="$t('email')"
+      v-model="form.email"
+      :rules="emailRules"
+      :counter="70"
+      prepend-icon="email"
+      required
+    ></v-text-field>
 
-          <!-- Password Confirmation -->
-          <div class="form-group row">
-            <label class="col-form-label text-md-right">{{ $t('confirm_password') }}</label>
-            <input v-model="form.password_confirmation" type="password" name="password_confirmation" class="form-control"
-              :class="{ 'is-invalid': form.errors.has('password_confirmation') }">
-            <has-error :form="form" field="password_confirmation"/>
-          </div>
+    <!-- Пароль -->
+    <has-error :form="form" field="password"/>
+    <v-text-field
+      :label="$t('password')"
+      v-model="form.password"
+      :rules="passwordRules"
+      prepend-icon="vpn_key"
+      type="password"
+      :counter="160"
+      required
+    ></v-text-field>
 
-          <v-btn :loading="form.busy" 
-                  color="blue darken-3" 
-                  block 
-                  type="submit">
-                {{ $t('register') }}
-          </v-btn>
-        </form>
+    <!-- Подтверждение пароля -->
+    <has-error :form="form" field="password_confirmation" />
+    <v-text-field
+      :label="$t('confirm_password')"
+      v-model="form.password_confirmation"
+      :rules="passwordRules"
+      prepend-icon="vpn_key"
+      type="password"
+      :counter="160"
+      required
+    ></v-text-field>
+
+    <!-- Отправка формы -->
+    <v-btn large block :loading="form.busy" type="submit">{{ $t('register') }}</v-btn>
+  </v-form>
+
 </template>
 
 <script>
@@ -62,24 +74,36 @@ export default {
       email: '',
       password: '',
       password_confirmation: ''
-    })
+    }),
+    valid: false,
+    nameRules: [
+      v => !!v || "Введите значение",
+      v => v.length <= 10 || 'Name must be less than 10 characters'
+    ],
+    emailRules: [
+      v => !!v || "Введите значение",
+      v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+    ],
+    passwordRules: [
+      v => !!v || "Введите значение"
+    ]
   }),
 
   methods: {
     async register () {
-      // Register the user.
+      // Регистрация пользователя.
       const { data } = await this.form.post('/api/register')
 
-      // Log in the user.
+       // Вход пользователя.
       const { data: { token }} = await this.form.post('/api/login')
 
-      // Save the token.
+       // Сохранить токен.
       this.$store.dispatch('auth/saveToken', { token })
 
-      // Update the user.
+       // Обновление пользователя.
       await this.$store.dispatch('auth/updateUser', { user: data })
 
-      // Redirect home.
+       // Перенаправление на домашнюю.
       this.$router.push({ name: 'home' })
     }
   }

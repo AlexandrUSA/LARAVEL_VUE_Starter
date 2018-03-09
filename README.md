@@ -10,7 +10,7 @@
 
 ## Установка
 
-- `composer create-project --prefer-dist AlexandrUSA/LARAVEL_VUE_Starter`
+- Скачать файлы
 - Изменить `.env` по свою БД
 - `php artisan key:generate` + `php artisan jwt:secret`
 - `php artisan migrate`
